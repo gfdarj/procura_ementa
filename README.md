@@ -1,6 +1,7 @@
 #
 
 Lista de projetos de lei da legislatura 23-27
+
 http://alerjln1.alerj.rj.gov.br/scpro2327.nsf/Internet/LeiInt?OpenForm&Count=999&ResortAscending=1?ID=20250305667
 
 
