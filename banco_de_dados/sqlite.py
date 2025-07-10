@@ -8,22 +8,7 @@ class projeto_de_lei:
         self.ementa = ""
         self.autor = ""
         self.data_publicacao = ""
-
-#    @property
-#    def numero(self):
-#        return self._numero
-
-#    @property
-#    def ementa(self):
-#        return self._ementa
-
-#    @property
-#    def autor(self):
-#        return self._autor
-
-#    @property
-#    def data_publicacao(self):
-#        return self._data_publicacao
+        self.comissoes = ""
 
 
 class projeto_de_lei_bd:
@@ -31,10 +16,10 @@ class projeto_de_lei_bd:
         self._con = sqlite3.connect(os.getcwd() + '/projetos_de_lei.db')
 
 
-    def Insere(self, numero, ementa, data_publicacao, autor):
+    def Insere(self, numero, ementa, data_publicacao, autor, comissoes):
         try:
             cursor = self._con.cursor()
-            cursor.execute('INSERT INTO projetos_de_lei (numero, ementa, data_publicacao, autor) VALUES (?,?,?,?)', (numero, ementa, data_publicacao, autor))
+            cursor.execute('INSERT INTO projetos_de_lei (numero, ementa, data_publicacao, autor, comissoes) VALUES (?,?,?,?,?)', (numero, ementa, data_publicacao, autor, comissoes))
             self._con.commit()
             print(f'(sql) Registro {numero} inserido')
 
@@ -42,10 +27,10 @@ class projeto_de_lei_bd:
             print('ERRO: ' + str(ex))
 
 
-    def Atualiza(self, numero, ementa, data_publicacao, autor):
+    def Atualiza(self, numero, ementa, data_publicacao, autor, comissoes):
         try:
             cursor = self._con.cursor()
-            cursor.execute('UPDATE projetos_de_lei SET ementa = ?, data_publicacao = ?, autor = ? WHERE numero = ?', (ementa, data_publicacao, autor, numero))
+            cursor.execute('UPDATE projetos_de_lei SET ementa = ?, data_publicacao = ?, autor = ?, comissoes = ? WHERE numero = ?', (ementa, data_publicacao, autor, comissoes, numero))
             self._con.commit()
             print(f'(sql) Registro {numero} atualizado')
 
@@ -55,7 +40,7 @@ class projeto_de_lei_bd:
 
     def Seleciona(self, numero):
         cursor = self._con.cursor()
-        cursor.execute('SELECT numero, ementa, data_publicacao, autor FROM projetos_de_lei WHERE numero = ?', (numero,)) # QUANDO É 1 PARAMETRO TEM QUE COLOCAR ESSA MALDITA VIRGULA !
+        cursor.execute('SELECT numero, ementa, data_publicacao, autor, comissoes FROM projetos_de_lei WHERE numero = ?', (numero,)) # QUANDO É 1 PARAMETRO TEM QUE COLOCAR ESSA MALDITA VIRGULA !
         return cursor.fetchone()
 
 
@@ -75,5 +60,4 @@ class projeto_de_lei_bd:
 
         except Exception as ex:
             print('ERRO: ' + str(ex))
-
 
