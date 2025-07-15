@@ -33,9 +33,18 @@ def le_projeto_de_lei(url_projeto_de_lei):
                 # coluna 2 - vazio
                 if col == 3:
                     pl.ementa = td.get_text()
-                    sp = pl.ementa.split(f"=>{pl.numero} => ")
-                    pl.ementa = sp[0].strip()
-                    pl.comissoes = sp[-1].strip()
+                    sp = pl.ementa.strip().split(f"=>{pl.numero} =>")
+
+                    # Tem bancos que está com espaço depois do "=>"
+                    if sp[0].strip() != sp[-1].strip():
+                        pl.ementa = sp[0].strip()
+                        pl.comissoes = sp[-1].strip()
+                    else:
+                        sp = pl.ementa.strip().split(f"=> {pl.numero} =>")
+                        pl.ementa = sp[0].strip()
+                        pl.comissoes = sp[-1].strip()
+
+
                 if col == 4:
                     pl.data_publicacao = td.get_text()
                 if col == 5:
