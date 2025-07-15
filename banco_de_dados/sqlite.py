@@ -15,7 +15,7 @@ class projeto_de_lei_bd:
             print(f'(sql) Registro {numero} inserido')
 
         except Exception as ex:
-            print('ERRO: ' + str(ex))
+            print('ERRO: ' + str(ex) + f" (número: {numero})")
 
 
     def Atualiza(self, numero, ementa, data_publicacao, autor, comissoes):
@@ -26,7 +26,7 @@ class projeto_de_lei_bd:
             print(f'(sql) Registro {numero} atualizado')
 
         except Exception as ex:
-            print(str(ex))
+            print(str(ex) + f" (numero: {numero})")
 
 
     def Seleciona(self, numero):

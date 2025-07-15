@@ -3,6 +3,8 @@
   "date_format_br": "%d/%m/%Y",
   "url_site": "http://alerjln1.alerj.rj.gov.br",
   "url_projetos": [
+      "/scpro1519.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
+      "/scpro1923.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
       "/scpro2327.nsf/Internet/LeiInt?OpenForm&ResortAscending=1"
   ],
   "banco_dados": "projetos_de_lei.db"
