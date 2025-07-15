@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 #from bs4.dammit import EncodingDetector
 import requests
 from classes.projeto_de_lei import projeto_de_lei
-
+from bib import tipo_projeto_de_lei
 
 ###################################################################################
 # Retorna o conjunto de PL´s lidos na URL
@@ -26,13 +26,10 @@ def le_projeto_de_lei(url_projeto_de_lei):
             pl = projeto_de_lei()
             col = 1
 
-            #print(linha)
-
-            #print(td.get_text().strip())
-
             for td in tds:
                 if col == 1:
                     pl.numero = td.get_text()
+                    pl.tipo = tipo_projeto_de_lei.mostra(pl.numero)
                 # coluna 2 - vazio
                 if col == 3:
                     pl.ementa = td.get_text()
@@ -48,9 +45,6 @@ def le_projeto_de_lei(url_projeto_de_lei):
 
             if len(pl.numero) == 11:
                 pls.append(pl)
-
-        #print("finally")
-        #print(pls)
 
     finally:
         return pls

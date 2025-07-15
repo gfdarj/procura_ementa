@@ -6,3 +6,4 @@ class projeto_de_lei:
         self.autor = ""
         self.data_publicacao = ""
         self.comissoes = ""
+        self.tipo = ""

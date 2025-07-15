@@ -1,7 +1,7 @@
 #from bs4 import BeautifulSoup
 #from bs4.dammit import EncodingDetector
 #import requests
-
+import bib.tipo_projeto_de_lei
 from banco_de_dados.sqlite import projeto_de_lei_bd
 from config import app
 from bib import le_pagina
@@ -41,8 +41,8 @@ bd = projeto_de_lei_bd()
 bd.ApagaTudo()
 
 for a in pls:
-    #print(f"{a.numero}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n")
-    bd.Insere(a.numero, a.ementa, a.data_publicacao, a.autor, a.comissoes)
+    print(f"{a.numero} - {a.tipo}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n")
+    bd.Insere(a.numero, a.ementa, a.data_publicacao, a.autor, a.comissoes, a.tipo)
     #print("")
 
 print(f"Total: {len(pls)}")
