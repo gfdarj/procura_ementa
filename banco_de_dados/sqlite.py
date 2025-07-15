@@ -2,15 +2,6 @@ import sqlite3
 import os
 
 
-class projeto_de_lei:
-    def __init__(self):
-        self.numero = ""
-        self.ementa = ""
-        self.autor = ""
-        self.data_publicacao = ""
-        self.comissoes = ""
-
-
 class projeto_de_lei_bd:
     def __init__(self):
         self._con = sqlite3.connect(os.getcwd() + '/projetos_de_lei.db')
