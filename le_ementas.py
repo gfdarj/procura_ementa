@@ -23,7 +23,7 @@ for projeto_de_lei in meu_app.url_projetos:
         pl = le_pagina.le_projeto_de_lei(url_notes)
 
         if pl:
-            pls.append(pl)
+            pls = pls + pl
 
         primeira_vez = False
         inicio = fim + 1
@@ -34,8 +34,6 @@ for projeto_de_lei in meu_app.url_projetos:
 #print(" *********************************************************************** ")
 bd = projeto_de_lei_bd()
 bd.ApagaTudo()
-
-print(pls[1])
 
 for a in pls:
     print(f"{a.numero}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n")
