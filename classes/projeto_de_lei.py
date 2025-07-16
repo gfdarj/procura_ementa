@@ -7,3 +7,4 @@ class projeto_de_lei:
         self.data_publicacao = ""
         self.comissoes = ""
         self.tipo = ""
+        self.numero_formatado = ""

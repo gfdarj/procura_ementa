@@ -30,6 +30,7 @@ def le_projeto_de_lei(url_projeto_de_lei):
                 if col == 1:
                     pl.numero = td.get_text()
                     pl.tipo = tipo_projeto_de_lei.mostra(pl.numero)
+                    pl.numero_formatado = str(int(pl.numero[6:11])) + "/" + pl.numero[0:4]
                 # coluna 2 - vazio
                 if col == 3:
                     pl.ementa = td.get_text()

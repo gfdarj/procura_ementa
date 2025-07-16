@@ -41,7 +41,7 @@ bd = projeto_de_lei_bd()
 bd.ApagaTudo()
 
 for a in pls:
-    print(f"{a.numero} - {a.tipo}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n")
+    print(f"{a.numero_formatado} - {a.numero} - {a.tipo}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n")
     bd.Insere(a.numero, a.ementa, a.data_publicacao, a.autor, a.comissoes, a.tipo)
     #print("")
 
