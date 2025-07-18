@@ -7,7 +7,7 @@ from bib import tipo_projeto_de_lei
 ###################################################################################
 # Retorna o conjunto de PL´s lidos na URL
 ###################################################################################
-def le_projeto_de_lei(url_projeto_de_lei):
+def obtem_dados_url(url_projeto_de_lei):
     pls = []
 
     try:
