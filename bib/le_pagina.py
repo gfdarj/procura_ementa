@@ -1,3 +1,6 @@
+import time
+from logging import exception
+
 from bs4 import BeautifulSoup
 #from bs4.dammit import EncodingDetector
 import requests
@@ -13,6 +16,8 @@ def obtem_dados_url(url_projeto_de_lei):
     try:
         #print("try")
         r = requests.get(f'{url_projeto_de_lei}')
+        time.sleep(5)  #Aguarda a pagina carregar
+
         #print(f'{url_projeto_de_lei}')
         soup = BeautifulSoup(r.content, 'html.parser')
 
@@ -28,9 +33,13 @@ def obtem_dados_url(url_projeto_de_lei):
 
             for td in tds:
                 if col == 1:
-                    pl.numero = td.get_text()
-                    pl.tipo = tipo_projeto_de_lei.mostra(pl.numero)
-                    pl.numero_formatado = str(int(pl.numero[6:11])) + "/" + pl.numero[0:4]
+                    if len(td.get_text()) == 11:
+                        pl.numero = td.get_text()
+                        pl.tipo = tipo_projeto_de_lei.mostra(pl.numero)
+                        try:
+                            pl.numero_formatado = str(int(pl.numero[6:11])) + "/" + pl.numero[0:4]
+                        except Exception as e:
+                            pl.numero_formatado = td.get_text() + " .... " + e
                 # coluna 2 - vazio
                 if col == 3:
                     pl.ementa = td.get_text()
@@ -53,8 +62,13 @@ def obtem_dados_url(url_projeto_de_lei):
 
                 col = col + 1
 
+            #print(pl)
+
             if len(pl.numero) == 11:
                 pls.append(pl)
+
+    except Exception as e:
+        print(f"ERRO em 'obtem_dados_url': {e}")
 
     finally:
         return pls
