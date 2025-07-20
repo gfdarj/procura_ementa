@@ -1,13 +1,25 @@
-import sqlite3
-import os
+import pyodbc
 
 
-class conexao_sqlite:
+class conexao_msacess:
+
     def __init__(self):
+        # connection_string = 'DRIVER={Microsoft Access Driver (*.mdb)};DBQ=path/to/your/database.mdb'
+        self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Dev/PycharmProjects/procura_ementa/projetos_de_lei.accdb'
+        print(self.connection_string)
+
         try:
-            self._con = sqlite3.connect(os.getcwd() + '/projetos_de_lei.db')
-        except sqlite3.Error as ex:
-            print(f'ERRO: {ex}')
+            self._con = pyodbc.connect(self.connection_string)
+            #cursor = cnxn.cursor()
+            print("Successfully connected to the database.")
+
+        except pyodbc.Error as ex:
+            sqlstate = ex.args[0]
+            if sqlstate == '01000':
+                print("Error: The specified DSN contains an architecture mismatch between the Driver and Application")
+            else:
+                print(f"Error connecting to database: {ex}")
+            #exit()
 
 
     def Insere(self, numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado):

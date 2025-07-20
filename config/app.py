@@ -10,7 +10,8 @@ class Parametros:
         self._date_format_br = arquivo_conf['date_format_br']
         self._url_site = arquivo_conf['url_site']
         self._url_projetos = arquivo_conf['url_projetos']
-        self._banco_dados = arquivo_conf['banco_dados']
+        self._banco_dados_msacess = arquivo_conf['banco_dados_msacess']
+        self._banco_dados_sqlite = arquivo_conf['banco_dados_sqlite']
 
 
     @property
@@ -30,5 +31,10 @@ class Parametros:
         return self._url_projetos
 
     @property
-    def banco_dados(self):
-        return str(self._banco_dados)
+    def banco_dados_sqlite(self):
+        return str(self._banco_dados_sqlite)
+
+    @property
+    def banco_dados_msacess(self):
+        return str(self._banco_dados_msacess)
+
