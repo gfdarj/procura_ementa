@@ -1,11 +1,10 @@
 import time
-from logging import exception
-
 from bs4 import BeautifulSoup
 #from bs4.dammit import EncodingDetector
 import requests
 from classes.projeto_de_lei import projeto_de_lei
 from bib import tipo_projeto_de_lei
+
 
 ###################################################################################
 # Retorna o conjunto de PL´s lidos na URL

@@ -22,7 +22,7 @@ def obtem_lista():
 
             pl = le_pagina.obtem_dados_url(url_notes)
 
-            print(pl)
+            #print(pl)
 
             if pl:
                 pls = pls + pl

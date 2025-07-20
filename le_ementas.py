@@ -1,5 +1,3 @@
-from itertools import count
-
 from banco_de_dados.sqlite import projeto_de_lei_bd
 from bib import le_projetos_de_lei
 
