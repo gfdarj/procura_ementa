@@ -3,6 +3,8 @@
   "date_format_br": "%d/%m/%Y",
   "url_site": "http://alerjln1.alerj.rj.gov.br",
   "url_projetos": [
+      "/scpro1115.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
+      "/scpro1115.nsf/Internet/LeiCompInt?OpenForm",
       "/scpro1519.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
       "/scpro1519.nsf/Internet/LeiCompInt?OpenForm",
       "/scpro1923.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
@@ -11,5 +13,5 @@
       "/scpro2327.nsf/Internet/LeiCompInt?OpenForm"
   ],
   "banco_dados_sqlite": "projetos_de_lei.db",
-  "banco_dados_msacess": "projetos_de_lei.accdb"
+  "banco_dados_msaccess": "projetos_de_lei.accdb"
 }

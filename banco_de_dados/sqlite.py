@@ -1,11 +1,14 @@
 import sqlite3
 import os
+from config import app
+from config.app import Parametros
 
 
 class conexao_sqlite:
     def __init__(self):
         try:
-            self._con = sqlite3.connect(os.getcwd() + '/projetos_de_lei.db')
+            p = Parametros()
+            self._con = sqlite3.connect(os.getcwd() + '/' + p.banco_dados_sqlite)
         except sqlite3.Error as ex:
             print(f'ERRO: {ex}')
 

@@ -1,12 +1,15 @@
 import pyodbc
+from config.app import Parametros
+import os
 
 
-class conexao_msacess:
+class conexao_msaccess:
 
     def __init__(self):
+        p = Parametros()
+
         # connection_string = 'DRIVER={Microsoft Access Driver (*.mdb)};DBQ=path/to/your/database.mdb'
-        self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Dev/PycharmProjects/procura_ementa/projetos_de_lei.accdb'
-        print(self.connection_string)
+        self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + str(os.getcwd()) + '/' + p.banco_dados_msaccess
 
         try:
             self._con = pyodbc.connect(self.connection_string)
