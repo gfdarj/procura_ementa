@@ -9,8 +9,6 @@ http://alerjln1.alerj.rj.gov.br/scpro2327.nsf/Internet/LeiInt?OpenForm&Count=999
     #TUDO
     #http://alerjln1.alerj.rj.gov.br/scpro2327.nsf/Internet/PropInt?OpenForm&Start=1&Count=15&Collapse=2
     
-      "/scpro1923.nsf/Internet/LeiInt?OpenForm&ResortAscending=1",
-      "/scpro1923.nsf/Internet/LeiCompInt?OpenForm",
 
     #http://alerjln1.alerj.rj.gov.br/scpro2327.nsf/Internet/EmendaInt?OpenForm','Proj. Lei 2023/2027 - Proj. Emenda Const. 2023/2027',158);" > Proj.Emenda Const. < / a > < / li >
     #http://alerjln1.alerj.rj.gov.br/scpro2327.nsf/Internet/LeiCompInt?OpenForm', 'Proj. Lei 2023/2027 - Proj. de Lei Complementar',160);" > Proj.de Lei Complementar < / a > < / li >
