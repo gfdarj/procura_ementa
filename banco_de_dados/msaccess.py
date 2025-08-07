@@ -8,8 +8,8 @@ class conexao_msaccess:
     def __init__(self):
         p = Parametros()
 
-        # connection_string = 'DRIVER={Microsoft Access Driver (*.mdb)};DBQ=path/to/your/database.mdb'
-        self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + str(os.getcwd()) + '/' + p.banco_dados_msaccess
+        self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + p.banco_dados_msaccess
+        #self.connection_string = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + str(os.getcwd()) + '/' + p.banco_dados_msaccess
 
         try:
             self._con = pyodbc.connect(self.connection_string)
@@ -25,10 +25,10 @@ class conexao_msaccess:
             #exit()
 
 
-    def Insere(self, numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado):
+    def Insere(self, numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado, link):
         try:
             cursor = self._con.cursor()
-            cursor.execute('INSERT INTO projetos_de_lei (numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado) VALUES (?,?,?,?,?,?,?)', (numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado))
+            cursor.execute('INSERT INTO projetos_de_lei (numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado, link) VALUES (?,?,?,?,?,?,?,?)', (numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado, link))
             self._con.commit()
             print(f'(sql) Registro {numero} inserido')
 
@@ -36,10 +36,10 @@ class conexao_msaccess:
             print('ERRO: ' + str(ex) + f" (número: {numero})")
 
 
-    def Atualiza(self, numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado):
+    def Atualiza(self, numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado, link):
         try:
             cursor = self._con.cursor()
-            cursor.execute('UPDATE projetos_de_lei SET ementa = ?, data_publicacao = ?, autor = ?, comissoes = ?, tipo = ?, numero_formatado = ? WHERE numero = ?', (ementa, data_publicacao, autor, comissoes, numero, tipo, numero_formatado))
+            cursor.execute('UPDATE projetos_de_lei SET ementa = ?, data_publicacao = ?, autor = ?, comissoes = ?, tipo = ?, numero_formatado = ?, link = ? WHERE numero = ?', (ementa, data_publicacao, autor, comissoes, numero, tipo, numero_formatado, link))
             self._con.commit()
             print(f'(sql) Registro {numero} atualizado')
 
@@ -49,7 +49,7 @@ class conexao_msaccess:
 
     def Seleciona(self, numero):
         cursor = self._con.cursor()
-        cursor.execute('SELECT numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado FROM projetos_de_lei WHERE numero = ?', (numero,)) # QUANDO É 1 PARAMETRO TEM QUE COLOCAR ESSA MALDITA VIRGULA !
+        cursor.execute('SELECT numero, ementa, data_publicacao, autor, comissoes, tipo, numero_formatado, link FROM projetos_de_lei WHERE numero = ?', (numero,)) # QUANDO É 1 PARAMETRO TEM QUE COLOCAR ESSA MALDITA VIRGULA !
         return cursor.fetchone()
 
 

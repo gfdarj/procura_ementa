@@ -8,3 +8,4 @@ class projeto_de_lei:
         self.comissoes = ""
         self.tipo = ""
         self.numero_formatado = ""
+        self.link = ""

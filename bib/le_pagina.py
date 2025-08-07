@@ -2,6 +2,7 @@ import time
 from bs4 import BeautifulSoup
 #from bs4.dammit import EncodingDetector
 import requests
+from config import app
 from classes.projeto_de_lei import projeto_de_lei
 from bib import tipo_projeto_de_lei
 
@@ -13,6 +14,8 @@ def obtem_dados_url(url_projeto_de_lei):
     pls = []
 
     try:
+        meu_app = app.Parametros()
+
         #print("try")
         r = requests.get(f'{url_projeto_de_lei}')
         time.sleep(5)  #Aguarda a pagina carregar
@@ -37,8 +40,14 @@ def obtem_dados_url(url_projeto_de_lei):
                         pl.tipo = tipo_projeto_de_lei.mostra(pl.numero)
                         try:
                             pl.numero_formatado = str(int(pl.numero[6:11])) + "/" + pl.numero[0:4]
+                            lnk_col = td.find("a")["href"]
+                            pl.link = meu_app.url_site + lnk_col
+
                         except Exception as e:
                             pl.numero_formatado = td.get_text() + " .... " + e
+                            pl.link = ""
+
+
                 # coluna 2 - vazio
                 if col == 3:
                     pl.ementa = td.get_text()
