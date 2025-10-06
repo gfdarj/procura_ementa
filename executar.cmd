@@ -6,6 +6,11 @@ cd \Deploy\procura_ementa
 rem ***source vprod/bin/activate
 rem .\vprod\Scripts\activate
 
+:: --- Cria a pasta Log se não existir ---
+if not exist "Log" (
+    mkdir "Log"
+)
+
 :: --- Gera timestamp no formato AAAA-MM-DD_HH-MM-SS ---
 for /f "tokens=1-3 delims=/" %%a in ("%date%") do (
     set "ano=%%c"
@@ -21,7 +26,7 @@ for /f "tokens=1-3 delims=:." %%a in ("%time%") do (
 set "hora=%hora: =0%"
 
 set "timestamp=%ano%-%mes%-%dia%_%hora%-%min%-%seg%"
-set "output=log_%timestamp%.txt"
+set "output=.\Log\log_%timestamp%.txt"
 
 echo Executando script Python... > "%output%"
 .\vprod\scripts\python .\le_ementas.py >> "%output%"
