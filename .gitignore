@@ -1,1 +1,4 @@
 /venv/
+/build/
+/dist/
+/le_ementas.spec
