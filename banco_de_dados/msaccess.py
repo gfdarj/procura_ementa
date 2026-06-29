@@ -70,3 +70,9 @@ class conexao_msaccess:
         except Exception as ex:
             print('ERRO: ' + str(ex))
 
+
+    def ExisteProjeto(self, numero):
+        cursor = self._con.cursor()
+        cursor.execute('SELECT numero FROM projetos_de_lei WHERE numero = ?', (numero,)) # QUANDO É 1 PARAMETRO TEM QUE COLOCAR ESSA MALDITA VIRGULA !
+        return cursor.fetchone() is not None
+

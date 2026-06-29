@@ -4,23 +4,27 @@ from bib import le_projetos_de_lei
 import sys
 
 #### CHAMA AS ROTINAS WEB PARA CARREGAR UMA LISTA DOS PROJETOS
-print("*** Lendo as páginas html")
+print("*** VARRENDO AS PÁGINAS HTML ***")
 #pls = []
 pls = le_projetos_de_lei.obtem_lista()
 
-print("*** Gravando os projetos no banco de dados")
+print("*** GRAVANDO OS NOVOS PROJETOS ENCONTRADOS NO BANCO DE DADOS *** ")
 #### CONECTA COM O BANCO DE DADOS E SALVA OS PROJETOS
 bd = msaccess.conexao_msaccess()
-bd.ApagaTudo()
+# bd.ApagaTudo()   # vou verificar se existe o projeto para evitar retrabalho
 
 sys.stdout.reconfigure(encoding='utf-8')
 
+contaPLs = 0
 for a in pls:
-    print(f"{a.numero_formatado} - {a.numero} - {a.tipo}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n{a.link}\n")
-    bd.Insere(a.numero, a.ementa, a.data_publicacao, a.autor, a.comissoes, a.tipo, a.numero_formatado, a.link)
-    #print("")
+    # SO INSERE CASO O PROJETO NÃO EXISTA
+    if not bd.ExisteProjeto(a.numero):
+        contaPLs += 1
+        print(f"{a.numero_formatado} - {a.numero} - {a.tipo}\n{a.ementa}\n{a.comissoes}\n{a.autor}\n{a.data_publicacao}\n{a.link}\n")
+        bd.Insere(a.numero, a.ementa, a.data_publicacao, a.autor, a.comissoes, a.tipo, a.numero_formatado, a.link)
+        #print("")
 
-print(f"Total: {len(pls)}")
+print(f"Total: {contaPLs}")
 
 
 
